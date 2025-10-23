@@ -1,7 +1,9 @@
 # ZombieScan Azure Deployment Guide
 
 ### Prerequisites
-- ✅ Azure subscription with **Owner** access
+- ✅ Azure subscription with: 
+   - Access to register the following providers, and install ARM templates
+   - Resources to scan (see below)
 - ✅ Azure CLI installed ([Install Guide](https://docs.microsoft.com/cli/azure/install-azure-cli))
 - ✅ **Required Resource Providers registered** (see below)
 
