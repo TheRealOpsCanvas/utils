@@ -28,7 +28,7 @@
    - `Microsoft.Resources`
 5. **Wait** until all show status **"Registered"** (usually 1-2 minutes per provider)
 
-_Use our [register-providers.sh](register-provders.sh) and [check-providers.sh](check-providers.sh) scripts to register and verify the CLI_
+_Use our [register-providers.sh](register-providers.sh) and [check-providers.sh](check-providers.sh) scripts to register and verify the CLI_
 
 
 ---
