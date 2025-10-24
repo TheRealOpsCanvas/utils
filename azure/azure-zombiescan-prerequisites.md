@@ -21,7 +21,7 @@ Existing subscriptions often have them already registered, except CostManagement
 5. **Wait** until all show status **"Registered"** (usually 1-2 minutes per provider)
 
    - `Microsoft.App`
-   - `Microsoft.Authorization` (registerd in new subscriptions)
+   - `Microsoft.Authorization` (registered in new subscriptions)
    - `Microsoft.ManagedIdentity`
    - `Microsoft.Storage`
    - `Microsoft.Insights`
@@ -30,7 +30,7 @@ Existing subscriptions often have them already registered, except CostManagement
    - `Microsoft.CostManagementExports`
    - `Microsoft.Web`
    - `Microsoft.AlertsManagement`
-   - `Microsoft.Resources` (registerd in new subscriptions)
+   - `Microsoft.Resources` (registered in new subscriptions)
 
 _Use our [register-providers.sh](register-providers.sh) and [check-providers.sh](check-providers.sh) scripts to register and verify via the CLI_
 
