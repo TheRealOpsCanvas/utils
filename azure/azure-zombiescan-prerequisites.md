@@ -1,4 +1,4 @@
-# ZombieScan Azure Installation Guide
+# ZombieScan - Azure Installation Guide
 
 ## Prerequisites
 - Azure subscription with: 
