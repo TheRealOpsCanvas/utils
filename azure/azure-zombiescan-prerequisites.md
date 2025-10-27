@@ -80,7 +80,7 @@ The following resources and prices are required for ZombieScan functionality
 | `trust-config-script`        | Starts and polls the trust-config job    | ~$0.01                | Temporary script container           |
 | `deployment-complete-script` | Starts and polls the complete job        | ~$0.01                | Temporary script container           |
 | Event Grid                   | Detects when the resource group is deleted | $0.00               | One-time event trigger               |
-| Function App                 | Calls backend on deletion                | $0.00                 | Runs once after install              |
+| Function App                 | Calls backend on deletion                | $0.00                 | Runs once at deletion                |
 | **Total**                    |                                          |  ~$0.03 - $0.04       | Negligible cost overall              |
 
 ### Recurring + Storage Components – Daily Usage
