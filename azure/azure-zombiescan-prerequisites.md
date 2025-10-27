@@ -65,3 +65,32 @@ ZombieScan analyzes the following Azure resource types to identify zombies:
 - **Web Apps** (`Microsoft.Web/sites`)
 - **AKS Clusters** (`Microsoft.ContainerService/managedClusters`)
 - **Key Vaults** (`Microsoft.KeyVault/vaults`)
+
+
+## Installed Resource Cost
+
+The following resources and prices are required for ZombieScan functionality
+
+### Installation Components – One-Time
+
+| Component                     | Purpose                                  | Est. Total Cost (USD) | Notes                               |
+|------------------------------|------------------------------------------|------------------------|--------------------------------------|
+| `trust-config-job`           | Runs once during install                 | ~$0.002               | Lightweight container job            |
+| `deployment-complete-job`    | Runs once after config is done           | ~$0.002               | Lightweight container job            |
+| `trust-config-script`        | Starts and polls the trust-config job    | ~$0.01                | Temporary script container           |
+| `deployment-complete-script` | Starts and polls the complete job        | ~$0.01                | Temporary script container           |
+| Event Grid                   | Detects when the resource group is deleted | $0.00               | One-time event trigger               |
+| Function App                 | Calls backend on deletion                | $0.00                 | Runs once after install              |
+| **Total**                    |                                          |  ~$0.03 - $0.04       | Negligible cost overall              |
+
+### Recurring + Storage Components – Daily Usage
+
+| Component               | Purpose                                   | Est. Monthly Cost (USD) | Notes                                         |
+|------------------------|-------------------------------------------|--------------------------|-----------------------------------------------|
+| `report-generator`     | Daily reporting container job             | ~$0.06                   | Runs for ~1 minute per day                    |
+| Container App Env      | Shared environment for container jobs     | $0.00                    | No charge without advanced features           |
+| `cost-storage`         | Stores daily cost files (auto-deletes)    | ~$0.0002                 | Deletes after 90 days                         |
+| `report-storage`       | Stores daily reports (grows slowly)       | ~$0.0001 (month 1)       | Remains under $0.01 even after 5 years        |
+| **Total**              |                                           |  ~$0.06 - $0.07          | Mostly compute, storage is minimal            |
+
+
