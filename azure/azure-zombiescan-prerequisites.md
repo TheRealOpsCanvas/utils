@@ -36,6 +36,20 @@ _Use our [register-providers.sh](register-providers.sh) and [check-providers.sh]
 
 ---
 
+## Installing ZombieScan
+
+1. Navigate to the [app.opscanvas.io/onboarding](OpsCanvas ZombieScan Installation page)
+1. Select **Azure** and click to the  next screen
+1. Click to open the Azure Console deployment page for ZombieScan
+1. Ensure the _subscription_ and _region_ you desire are selected (NOTE: choose westus2 if you haven't raised quotas in other regions)
+1. Click to begin installation. It should take 8-12 minutes.
+1. To install in another account, click to go back to the homepage and click the Install Zombie... and repeat the above
+
+## Uninstalling ZombieScan
+
+1. In the subscription where it is installed, navigate to **Resource Groups**.
+1. Delete the resource group that start with `zs-main...`, then the one that starts with `zs-signal...` 
+
 ## Azure Resources Scanned
 
 ZombieScan analyzes the following Azure resource types to identify zombies:
@@ -65,3 +79,32 @@ ZombieScan analyzes the following Azure resource types to identify zombies:
 - **Web Apps** (`Microsoft.Web/sites`)
 - **AKS Clusters** (`Microsoft.ContainerService/managedClusters`)
 - **Key Vaults** (`Microsoft.KeyVault/vaults`)
+
+
+## Installed Resource Cost
+
+The following resources and prices are required for ZombieScan functionality
+
+### Installation Components – One-Time
+
+| Component                     | Purpose                                  | Est. Total Cost (USD) | Notes                               |
+|------------------------------|------------------------------------------|------------------------|--------------------------------------|
+| `trust-config-job`           | Runs once during install                 | ~$0.002               | Lightweight container job            |
+| `deployment-complete-job`    | Runs once after config is done           | ~$0.002               | Lightweight container job            |
+| `trust-config-script`        | Starts and polls the trust-config job    | ~$0.01                | Temporary script container           |
+| `deployment-complete-script` | Starts and polls the complete job        | ~$0.01                | Temporary script container           |
+| Event Grid                   | Detects when the resource group is deleted | $0.00               | One-time event trigger               |
+| Function App                 | Calls backend on deletion                | $0.00                 | Runs once at deletion                |
+| **Total**                    |                                          |  ~$0.03 - $0.04       | Negligible cost overall              |
+
+### Recurring + Storage Components – Daily Usage
+
+| Component               | Purpose                                   | Est. Monthly Cost (USD) | Notes                                         |
+|------------------------|-------------------------------------------|--------------------------|-----------------------------------------------|
+| `report-generator`     | Daily reporting container job             | ~$0.06                   | Runs for ~1 minute per day                    |
+| Container App Env      | Shared environment for container jobs     | $0.00                    | No charge without advanced features           |
+| `cost-storage`         | Stores daily cost files (auto-deletes)    | ~$0.0002                 | Deletes after 90 days                         |
+| `report-storage`       | Stores daily reports (grows slowly)       | ~$0.0001 (month 1)       | Remains under $0.01 even after 5 years        |
+| **Total**              |                                           |  ~$0.06 - $0.07          | Mostly compute, storage is minimal            |
+
+
