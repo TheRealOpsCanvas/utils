@@ -36,6 +36,20 @@ _Use our [register-providers.sh](register-providers.sh) and [check-providers.sh]
 
 ---
 
+## Installing ZombieScan
+
+1. Navigate to the [app.opscanvas.io/onboarding](OpsCanvas ZombieScan Installation page)
+1. Select **Azure** and click to the  next screen
+1. Click to open the Azure Console deployment page for ZombieScan
+1. Ensure the _subscription_ and _region_ you desire are selected (NOTE: choose westus2 if you haven't raised quotas in other regions)
+1. Click to begin installation. It should take 8-12 minutes.
+1. To install in another account, click to go back to the homepage and click the Install Zombie... and repeat the above
+
+## Uninstalling ZombieScan
+
+1. In the subscription where it is installed, navigate to **Resource Groups**.
+1. Delete the resource group that start with `zs-main...`, then the one that starts with `zs-signal...` 
+
 ## Azure Resources Scanned
 
 ZombieScan analyzes the following Azure resource types to identify zombies:
